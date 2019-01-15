@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+	<div id='goalList'>
+		<details style='border: 1px solid black; display: none' id='goal0'>
+			<summary>
+				<input name='goalName' placeholder='Goal'>
+				<input type='date' name='due'><!--autoset this to 3 h/d/m/y's-->
+				<input name='whenDoneBool' type='checkbox' onclick='console.log(this.attributes.type.ownerElement.parentElement.id)'>
+				<input name='whenDoneInput' placeholder='When Done'>
+				<button style='float: right; position: relative; right: 2px; top: 1.5px; padding: 0px 5px 0px;' onclick='deleteGoal(this.attributes.onclick.ownerElement.parentElement.parentElement)'>X</button>
+			</summary>
+			+
+		</details><br>
+	</div>
+	<button id='newGoalButton'>New Goal</button>
+
+	<script src='frontend.js'></script>
+	<script>
+		var numGoals = 0; //REPLACE SERVERSIDE
+		document.getElementById('newGoalButton').addEventListener('click', function() {
+			numGoals = newGoal(numGoals)
+		});
+	</script>
+</body>
+</html>
