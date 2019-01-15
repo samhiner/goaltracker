@@ -7,7 +7,7 @@ function uploadData() {
 function gatherData() {
 	goalData = []
 	goals = document.getElementById('goalList').children;
-	for (var x = 1; x < goals.length; x++) {
+	for (var x = 0; x < goals.length; x++) {
 		goalData.push(1);
 	}
 }

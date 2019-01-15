@@ -1,28 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<script src='frontend.js'></script>
+	<script src='upload.js'></script>
+	<style>
+		body {
+			font-family: sans-serif;
+		}
+	</style>
 </head>
 <body>
-	<div id='goalList'>
-		<details style='border: 1px solid black; display: none' id='goal0'>
-			<summary>
-				<input name='goalName' placeholder='Goal'>
-				<input type='date' name='due'><!--autoset this to 3 h/d/m/y's-->
-				<input name='whenDoneBool' type='checkbox' onclick='console.log(this.attributes.type.ownerElement.parentElement.id)'>
-				<input name='whenDoneInput' placeholder='When Done'>
-				<button style='float: right; position: relative; right: 2px; top: 1.5px; padding: 0px 5px 0px;' onclick='deleteGoal(this.attributes.onclick.ownerElement.parentElement.parentElement)'>X</button>
-			</summary>
-			+
-		</details><br>
-	</div>
-	<button id='newGoalButton'>New Goal</button>
-
-	<script src='frontend.js'></script>
-	<script>
-		var numGoals = 0; //REPLACE SERVERSIDE
-		document.getElementById('newGoalButton').addEventListener('click', function() {
-			numGoals = newGoal(numGoals)
-		});
-	</script>
+	<span id='eventReference' style='display: none;'>
+		<li>
+			<input placeholder='Event'>
+			Start: <input type='date'>
+			Hours: <input type='number'>
+			Recurring: 
+			<select>
+				<option>Never</option>
+				<option>Daily</option>
+				<option>Weekly</option>
+				<option>Monthly</option>
+				<option>Annually</option>
+			</select>
+			&nbsp;<button onclick='deleteEvent(this.attributes.onclick.ownerElement.parentElement)'>X</button>
+		</li>
+	</span>
+	<details style='border: 1px solid black; display: none' id='goalTemplate'>
+		<summary>
+			<input name='goalName' placeholder='Goal'>
+			<input type='date' name='due'><!--autoset this to 3 h/d/m/y's-->
+			<input name='whenDoneBool' type='checkbox'>
+			<input name='whenDoneInput' placeholder='When Done'>
+			<button style='float: right; position: relative; right: 2px; top: 1.5px; padding: 0px 5px 0px;' onclick='deleteGoal(this.parentElement.parentElement)'>X</button>
+		</summary>
+		<ul></ul>
+		<button onclick='newEvent(this.attributes.onclick.ownerElement.parentElement)'>New Event</button>
+	</details>
+	<div id='goalList'></div>
+	<button id='newGoalButton' onclick='newGoal()'>New Goal</button>
 </body>
 </html>
